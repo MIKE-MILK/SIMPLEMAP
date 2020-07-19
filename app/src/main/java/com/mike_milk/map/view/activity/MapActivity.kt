@@ -96,7 +96,6 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, 
         autoCompleteTextView?.setOnClickListener {
             val intent = Intent(this@MapActivity, InputtipsActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 

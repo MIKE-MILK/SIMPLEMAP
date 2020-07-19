@@ -98,7 +98,6 @@ public class InputtipsActivity extends Activity implements TextWatcher, Inputtip
 				poiSearch.searchPOIIdAsyn(poi.getPoiId());
 			}
 		}
-		Intent intent = new Intent(this, RestRouteActivity.class);
 	}
 	//回调
 	@Override

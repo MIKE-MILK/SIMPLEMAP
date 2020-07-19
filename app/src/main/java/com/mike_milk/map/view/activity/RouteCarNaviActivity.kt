@@ -72,9 +72,7 @@ class RouteCarNaviActivity:AppCompatActivity(), AMapNaviListener, AMapNaviViewLi
     override fun onDestroy() {
         super.onDestroy()
         mAMapNaviView!!.onDestroy()
-        mAMapNavi!!.stopNavi()
-        mAMapNavi!!.removeAMapNaviListener(this)
-
+        mAMapNavi!!.destroy()
     }
 
     override fun onInitNaviFailure() {

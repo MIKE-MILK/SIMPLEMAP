@@ -72,6 +72,12 @@ class RouteWalkNaviActivity:AppCompatActivity() , AMapNaviListener, AMapNaviView
         mAMapNavi!!.startNavi(NaviType.GPS)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mAMapNaviView!!.onDestroy()
+        mAMapNavi!!.destroy()
+    }
+
     override fun onCalculateRouteSuccess(p0: AMapCalcRouteResult?) {}
 
     override fun onCalculateRouteFailure(p0: Int) {}
