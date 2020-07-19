@@ -3,12 +3,14 @@ package com.mike_milk.map.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.amap.api.location.AMapLocation
 import com.amap.api.maps.AMap
+import com.amap.api.maps.AMap.*
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.LocationSource
 import com.amap.api.maps.MapView
@@ -18,6 +20,7 @@ import com.amap.api.maps.model.MyLocationStyle
 import com.amap.api.services.core.AMapException
 import com.amap.api.services.weather.*
 import com.amap.api.services.weather.WeatherSearch.OnWeatherSearchListener
+import com.getbase.floatingactionbutton.FloatingActionButton
 import com.mike_milk.map.R
 import com.mike_milk.map.utlis.LocationUtil
 
@@ -26,7 +29,9 @@ import com.mike_milk.map.utlis.LocationUtil
  *创建者：MIKE-MILK
  *描述：显示地图
  */
-class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener{
+class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, View.OnClickListener {
+
+    private val TAG:String="MapActivity"
     private var map: MapView?=null
     private var aMap: AMap?=null
     private var locationUtil: LocationUtil?=null
@@ -47,14 +52,21 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener{
     private var weatherSearch:WeatherSearch?=null
     private var weatherForecast:LocalWeatherForecast?=null
     private var forecastList:MutableList<LocalDayWeatherForecast>?=null
+    private var night:FloatingActionButton?=null
+    private var star:FloatingActionButton?=null
+    private var first:FloatingActionButton?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_sheet_behavior)
         map = findViewById(R.id.map)
+        night=findViewById(R.id.btn_night)
+        night!!.setOnClickListener(this)
+        star=findViewById(R.id.btn_star)
+        star!!.setOnClickListener(this)
+        first=findViewById(R.id.btn_first)
+        first!!.setOnClickListener(this)
         autoCompleteTextView=findViewById(R.id.auto_keyWord)
-//        Button=findViewById(R.id.btn_search)
-        aMap?.setMapType(AMap.MAP_TYPE_NIGHT)
         map?.onCreate(savedInstanceState)
         initView()
         init()
@@ -86,10 +98,6 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener{
             startActivity(intent)
             finish()
         }
-//        Button?.setOnClickListener {
-//            val intent = Intent(this@MapActivity, InputtipsActivity::class.java)
-//            startActivity(intent)
-//            finish() }
     }
 
     private fun init(){
@@ -175,6 +183,7 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener{
                 temp?.setText(weatherLive?.getTemperature()+"°")
                 wind?.setText(weatherLive?.getWindDirection()+"风   "+weatherLive?.getWindPower()+"级")
                 humidity?.setText("湿度  "+weatherLive?.getHumidity()+"%")
+                Log.d(TAG,"+"+weatherLive)
             }
         }
     }
@@ -215,10 +224,19 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener{
         }
         forecast?.setText(forecasts)
     }
+
+    override fun onClick(v: View?) {
+        when(v!!.getId()){
+            R.id.btn_first->{
+                aMap?.setMapType(AMap.MAP_TYPE_NORMAL)
+            }
+            R.id.btn_night->{
+                aMap?.setMapType(AMap.MAP_TYPE_NIGHT)
+            }
+            R.id.btn_star->{
+                aMap?.setMapType(AMap.MAP_TYPE_SATELLITE)
+            }
+        }
+    }
 }
-
-
-
-private fun LocationSource.OnLocationChangedListener?.onLocationChanged(markerOption: MarkerOptions?) {
-
-}
+private fun LocationSource.OnLocationChangedListener?.onLocationChanged(markerOption: MarkerOptions?) {}

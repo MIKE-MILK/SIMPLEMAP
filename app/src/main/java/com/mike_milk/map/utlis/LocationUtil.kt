@@ -56,10 +56,6 @@ class LocationUtil:AMapLocationListener{
               var street:String=p0.getStreet()
               var lat:Double=p0.getLatitude()
               var lgt:Double=p0.getLongitude()
-              //传出定位经纬度
-//              var intent=Intent()
-//              intent.putExtra("lat",lat)
-//              intent.putExtra("lgt",lgt)
               callBack!!.callBack(country + province + city + district + street, lat, lgt, p0)
           }else{
               Log.e("AmapError", "location Error, ErrCode:"

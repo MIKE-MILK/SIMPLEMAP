@@ -33,7 +33,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="12728ea4923cc04db12ec008fd0c2670"/>
-        <activity android:name=".view.activity.MapActivity"/>
+<!--        <activity android:name=".view.activity.MapActivity"/>-->
         <activity android:name=".view.activity.AMapNaviActivity"/>
         <activity android:name=".view.activity.InputtipsActivity"/>
         <activity android:name=".view.activity.RestRouteActivity"/>
@@ -41,7 +41,7 @@
         <activity android:name=".view.activity.NaviActivity"/>
         <activity android:name=".view.activity.RouteWalkNaviActivity"/>
         <service android:name="com.amap.api.location.APSService"></service>
-        <activity android:name="com.mike_milk.map.view.activity.WelcomeActivity">
+        <activity android:name="com.mike_milk.map.view.activity.MapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
