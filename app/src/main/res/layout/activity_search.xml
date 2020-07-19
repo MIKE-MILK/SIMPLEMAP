@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/lin_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/ic_search"/>
+        <AutoCompleteTextView
+            android:id="@+id/auto_keyWord"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:dropDownVerticalOffset="1.0dip"
+            android:hint="你想去哪？"
+            android:imeOptions="actionDone"
+            android:inputType="text|textAutoComplete"
+            android:maxLength="20"
+            android:paddingRight="37.0dip"
+            android:singleLine="true"
+            android:textSize="16.0sp"
+            android:background="@drawable/shape"/>
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Go"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lin_search">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcy_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>
