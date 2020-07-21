@@ -3,16 +3,16 @@
 ### 使用了高德地图的SDK进行编译，APP完成了一个地图软件应该都具备的功能。
 ### 功能：
 #### 1.实现了定位，地图的图层可以进行手动切换
-![image](https://github.com/https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_022115_901.gif)
-![image](https://github.com/https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_044216_905.gif)
+![image](https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_022115_901.gif)
+![image](https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_044216_905.gif)
 #### 2.实现了位置的搜索，并提示可能会涉及的地名进行选择（第一次需要点击两次）
-![image](https://github.com/https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_045247_761.gif)
+![image](https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_045247_761.gif)
 #### 3.实现了驾车的导航功能（有语音提示）
-![image](https://github.com/https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_045610_959.gif)
+![image](https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_045610_959.gif)
 #### 4.实现了步行的导航功能（如果路程过长，不能进行步行导航，有语音提示）
-![image](https://github.com/https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_050042_591.gif)
+![image](https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_050042_591.gif)
 #### 5.实现了天气的查询
-![image](https://github.com/https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_044603_809.gif)
+![image](https://github.com/MIKE-MILK/SIMPLEMAP/blob/master/Gif/Video_20200721_044603_809.gif)
 ### 不足：
 有一些东西想实现，但却不知道怎么去实现，有些地方还有点小问题，kotlin的使用不是很熟悉
 ### 总结：
