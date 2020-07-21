@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.amap.api.location.AMapLocation
+import com.amap.api.location.AMapLocationListener
 import com.amap.api.navi.AMapNavi
 import com.amap.api.navi.AMapNaviListener
 import com.amap.api.navi.AMapNaviView
@@ -20,13 +22,15 @@ import com.mike_milk.map.R
  *创建者：MIKE-MILK
  *描述：
  */
-class RouteWalkNaviActivity:AppCompatActivity() , AMapNaviListener, AMapNaviViewListener {
+class RouteWalkNaviActivity:AppCompatActivity() , AMapNaviListener, AMapNaviViewListener,AMapLocationListener {
 
     private val TAG:String="ROUTEWALK"
     var mAMapNaviView: AMapNaviView? = null
     var mAMapNavi: AMapNavi? = null
     private var endlat:Double?=null
     private var endlog:Double?=null
+    private var startlat:Double?=null
+    private var startlog:Double?=null
     protected var starnaviLatLng: NaviLatLng = NaviLatLng(29.529753,106.609417)
     protected var endnaviLatLng: NaviLatLng? =null
     protected var sList: MutableList<NaviLatLng> = ArrayList<NaviLatLng>()
@@ -47,7 +51,6 @@ class RouteWalkNaviActivity:AppCompatActivity() , AMapNaviListener, AMapNaviView
         eList.add(endnaviLatLng!!)
         mAMapNavi!!.addAMapNaviListener(this)
         mAMapNavi!!.setUseInnerVoice(true)
-        mAMapNavi!!.setEmulatorNaviSpeed(60)
         Log.d(TAG,""+endnaviLatLng)
         Log.d(TAG,"e:"+eList+" s:"+sList)
     }
@@ -56,14 +59,18 @@ class RouteWalkNaviActivity:AppCompatActivity() , AMapNaviListener, AMapNaviView
         var bundle = this.intent.extras
         endlat=bundle?.getDouble("lat")
         endlog=bundle?.getDouble("log")
-        Log.d(TAG,"lat:"+endlat+"log:"+endlog)
+    }
+
+    override fun onLocationChanged(p0: AMapLocation?) {
+        var lat:Double=p0!!.getLatitude()
+        var lgt:Double= p0!!.getLongitude()
+        Log.d("Mapss",""+lat+"  "+lgt)
     }
 
     override fun onNaviInfoUpdate(naviinfo: NaviInfo?) {
         lastNaviInfo = naviinfo
         if (null != naviinfo) {
             var x= lastNaviInfo!!.getPathRetainDistance()
-            Toast.makeText(this,""+x, Toast.LENGTH_SHORT).show()
             Log.d(TAG,""+x)
         }
     }
@@ -169,9 +176,7 @@ class RouteWalkNaviActivity:AppCompatActivity() , AMapNaviListener, AMapNaviView
 
     override fun onNaviViewLoaded() {}
 
-    override fun onNaviBackClick(): Boolean {
-        return false
-    }
+    override fun onNaviBackClick(): Boolean { return false }
 
     override fun onNaviMapMode(p0: Int) {}
 

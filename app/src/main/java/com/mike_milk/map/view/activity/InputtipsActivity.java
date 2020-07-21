@@ -53,6 +53,8 @@ public class InputtipsActivity extends Activity implements TextWatcher, Inputtip
 	private static final String TAG="activity_navi";
 	private int pointType;
 	private SearchAdapter adapter;
+	private Double startLag;
+	private Double startLog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,14 @@ public class InputtipsActivity extends Activity implements TextWatcher, Inputtip
 		listView.setOnTouchListener(this);
         mKeywordText.addTextChangedListener(this);
         mKeywordText.requestFocus();
+        getData();
+	}
+
+	private void getData(){
+		Bundle bundle =getIntent().getExtras();
+//		startLag=bundle.getDouble("lat1");
+//		startLog=bundle.getDouble("log1");
+		Log.d("Maps","ss"+startLog+" ss "+startLag);
 	}
 
 	@Override

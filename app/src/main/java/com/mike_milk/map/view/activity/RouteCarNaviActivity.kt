@@ -47,7 +47,6 @@ class RouteCarNaviActivity:AppCompatActivity(), AMapNaviListener, AMapNaviViewLi
         eList.add(endnaviLatLng!!)
         mAMapNavi!!.addAMapNaviListener(this)
         mAMapNavi!!.setUseInnerVoice(true)
-        mAMapNavi!!.setEmulatorNaviSpeed(60)
         Log.d(TAG,""+endnaviLatLng)
         Log.d(TAG,"e:"+eList+" s:"+sList)
     }
@@ -151,7 +150,6 @@ class RouteCarNaviActivity:AppCompatActivity(), AMapNaviListener, AMapNaviViewLi
 //            var iconType:Int=naviinfo.getIconType()
 //            //每次NaviInfo更新的时候 准确的获取接下来的路长，以及接下来的路况
             var x= lastNaviInfo!!.getPathRetainDistance()
-            Toast.makeText(this,""+x,Toast.LENGTH_SHORT).show()
             Log.d(TAG,""+x)
         }
     }
@@ -174,7 +172,6 @@ class RouteCarNaviActivity:AppCompatActivity(), AMapNaviListener, AMapNaviViewLi
     override fun hideLaneInfo() {}
 
     override fun onCalculateRouteSuccess(ints: IntArray?) {
-//        onCalculateRouteSuccess(ints )
         mAMapNavi!!.startNavi(NaviType.GPS)
     }
 

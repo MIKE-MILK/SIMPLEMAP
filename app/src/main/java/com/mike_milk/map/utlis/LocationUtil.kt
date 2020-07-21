@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
+import com.amap.api.maps.AMap
 import com.amap.api.maps.model.BitmapDescriptorFactory
 import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.MarkerOptions
@@ -20,7 +22,7 @@ import com.mike_milk.map.view.activity.RestRouteActivity
  *创建者：MIKE-MILK
  *描述：确定位置的工具类
  */
-class LocationUtil:AMapLocationListener{
+class LocationUtil:AMapLocationListener, AMap.OnMapTouchListener{
 
     private var aMapLocationClient: AMapLocationClient? = null
     private var clientOption: AMapLocationClientOption? = null
@@ -87,5 +89,8 @@ class LocationUtil:AMapLocationListener{
 
     fun setLocationCallBack(callBack: LocationCallBack?) {
         this.callBack = callBack
+    }
+
+    override fun onTouch(p0: MotionEvent?) {
     }
 }

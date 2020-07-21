@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.amap.api.location.AMapLocation
 import com.amap.api.maps.AMap
-import com.amap.api.maps.AMap.*
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.LocationSource
 import com.amap.api.maps.MapView
@@ -23,6 +22,7 @@ import com.amap.api.services.weather.WeatherSearch.OnWeatherSearchListener
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.mike_milk.map.R
 import com.mike_milk.map.utlis.LocationUtil
+import com.mike_milk.map.utlis.PermissionUtils
 
 /**
  *时间：2020/7/12
@@ -55,6 +55,9 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, 
     private var night:FloatingActionButton?=null
     private var star:FloatingActionButton?=null
     private var first:FloatingActionButton?=null
+    private val followMove:Boolean=true
+    private var startlag:Double?=null
+    private var startLog:Double?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +70,9 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, 
         first=findViewById(R.id.btn_first)
         first!!.setOnClickListener(this)
         autoCompleteTextView=findViewById(R.id.auto_keyWord)
+        PermissionUtils.requestPermission(this,5)
+        PermissionUtils.requestPermission(this,6)
+        PermissionUtils.requestPermission(this,10)
         map?.onCreate(savedInstanceState)
         initView()
         init()
@@ -86,7 +92,8 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, 
         aMap!!.moveCamera(CameraUpdateFactory.zoomTo(15F))
         //设置定位标点
         locationStyle= MyLocationStyle()
-        locationStyle!!.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE)
+        locationStyle!!.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER)
+        aMap!!.getUiSettings().setMyLocationButtonEnabled(true);
         aMap!!.setMyLocationStyle(locationStyle)
         //显示定位层并可触发，默认false
         aMap!!.setMyLocationEnabled(true)
@@ -94,6 +101,9 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, 
     //点击搜索框跳转至新的搜索activity
     private fun iniListen(){
         autoCompleteTextView?.setOnClickListener {
+            val bundle = Bundle()
+//            bundle.putDouble("lat1", lat)
+//            bundle.putDouble("log1", lgt)
             val intent = Intent(this@MapActivity, InputtipsActivity::class.java)
             startActivity(intent)
         }
