@@ -152,6 +152,7 @@ class MapActivity: AppCompatActivity(),LocationSource, OnWeatherSearchListener, 
                 Log.d("Map",""+lat+"  "+lgt)
             }
         })
+
     }
 
     override fun deactivate() {
